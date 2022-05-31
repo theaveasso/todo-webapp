@@ -1,6 +1,6 @@
 use yew::prelude::*;
 use stylist::yew::styled_component;
-use crate::atoms::c_link::ComLink;
+use super::super::atoms::c_link::ComLink;
 use crate::router::Route::{Home, CreateAccount};
 
 #[styled_component(Navbar)]
