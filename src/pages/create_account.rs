@@ -1,13 +1,26 @@
 use yew::prelude::*;
-use crate::components::atoms::c_text_input::ComTextInput;
+use stylist::yew::styled_component;
+use crate::components::atoms::c_text_input::{ComTextInput, InputType};
 
-#[function_component(CreateAccount)]
+#[styled_component(CreateAccount)]
 pub fn create_account() -> Html {
+    let stylesheet = css!(
+        r#"
+            display:flex;
+            flex-direction: column;
+    "#);
     html! {
         <>
         <h1>{ "Create Account" }</h1>
-        <section>
-            <ComTextInput data_test="username" label="Username" placeholder="Please Input your name..." />
+        <section class={stylesheet}>
+            <ComTextInput data_test="username" 
+            label="Username:  " 
+            inputtype = {InputType::Text}
+            placeholder="Please Input your name..." />
+            <ComTextInput data_test="password" 
+            label="Password:  "
+            inputtype = {InputType::Password}
+            placeholder="Please Input your password..." />
         </section>
         </>
     }
