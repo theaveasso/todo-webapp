@@ -1,7 +1,7 @@
 use yew::prelude::*;
 use stylist::yew::styled_component;
-use super::super::atoms::c_link::ComLink;
-use crate::router::Route::{Home, CreateAccount};
+use super::super::atoms::c_link::{ComLink, LinkType};
+use crate::router::Route::{Home, CreateAccount, Login};
 
 #[styled_component(Navbar)]
 pub fn navbar() -> Html {
@@ -9,7 +9,8 @@ pub fn navbar() -> Html {
         r#"
             border-bottom: .2em solid;
             padding-bottom: .2em;
-            display: block;
+            display: flex;
+            justify-content: space-between;
             margin: 2em 5em;
 
             h2 {
@@ -26,16 +27,26 @@ pub fn navbar() -> Html {
     html! {
         <navbar class={stylesheet}>
             <ComLink 
-                    text="todo-app 🦀"
+                    text="nostal 🦀"
                     data_test="logo"
                     route={Home} 
             />
+            <div>
+                <ComLink 
+                        text="Create Account"
+                        data_test="logo"
+                        route={CreateAccount} 
+                        link_type={LinkType::Button}
+                />
+                <ComLink 
+                        text="Login"
+                        data_test="login"
+                        route={Login}
+                        link_type={LinkType::Button}
 
-            <ComLink 
-                    text="create-account"
-                    data_test="logo"
-                    route={CreateAccount} 
-            />
+            
+                />
+            </div> 
         </navbar>
     }
 }

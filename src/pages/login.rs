@@ -1,6 +1,6 @@
 use yew::prelude::*;
-use gloo::console::log;
 use stylist::yew::styled_component;
+use gloo::console::log;
 use crate::components::atoms::{c_text_input::{ComTextInput, InputType}, c_button::ComButton};
 
 #[derive(Default)]
@@ -9,8 +9,8 @@ pub struct State {
     pub password: String
 }
 
-#[styled_component(CreateAccount)]
-pub fn create_account() -> Html {
+#[styled_component(Login)]
+pub fn login() -> Html {
     let stylesheet = css!(
         r#"
             display: flex;
@@ -20,14 +20,6 @@ pub fn create_account() -> Html {
                 width: 75%;
             }
     "#);
-
-
-
-    let state = use_state(State::default);
-    // event on summit
-    let onsubmit = Callback::from(|event: FocusEvent| {
-        event.prevent_default();
-    });
     let username_onchange = Callback::from(|username: String|{
         log!(username);
     });
@@ -35,32 +27,29 @@ pub fn create_account() -> Html {
     let password_onchange = Callback::from(|password: String|{
         log!(password);
     });
-
     html! {
         <>
-        <h1 style="text-align : center;">{ "Create Account" }</h1>
+        <h1 style="text-align : center;">{ "Login" }</h1>
         <section class={stylesheet}>
             
-            <form {onsubmit}>
+            <form>
                 <ComTextInput data_test="username" 
                 label="Username:  " 
                 inputtype = {InputType::Text}
                 placeholder="Please Input your name..." 
-                onchange={username_onchange}/>
+                onchange = {username_onchange}/>
                 
                 <ComTextInput data_test="password" 
                 label="Password:  "
                 inputtype = {InputType::Password}
                 placeholder="Please Input your password..." 
-                onchange={password_onchange}/>
+                onchange = {password_onchange}/>
                 
                 <ComButton data_test="summit"
-                label="Create Account" />
+                label="Sign in" />
             </form>
-            
             
         </section>
         </>
     }
-
 }
